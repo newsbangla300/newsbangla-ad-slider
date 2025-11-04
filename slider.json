@@ -1,0 +1,17 @@
+[
+  {
+    "image": "https://raw.githubusercontent.com/yourusername/my-slider/main/images/khatiz.jpg",
+    "title": "Khatiz Food - স্পন্সর",
+    "link": "https://khatizfood.com"
+  },
+  {
+    "image": "https://raw.githubusercontent.com/yourusername/my-slider/main/images/slide2.jpg",
+    "title": "Another Sponsor",
+    "link": "https://example.com"
+  },
+  {
+    "image": "https://raw.githubusercontent.com/yourusername/my-slider/main/images/slide2.jpg",
+    "title": "Another Sponsor",
+    "link": "https://example.com"
+  }
+]

@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NewsBangla – অ্যাপে বিজ্ঞাপন দিন</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --g:#006A4E;
+  --gd:#003d2c;
+  --gb:#004d38;
+  --gl:#e0f2ea;
+  --gold:#c8950a;
+  --gold2:#f5b800;
+  --goldf:#fff8e6;
+  --ink:#0d1a12;
+  --ink2:#2a3d30;
+  --ink3:#5a7060;
+  --ink4:#8fa898;
+  --border:#cce4d8;
+  --white:#fff;
+  --bg:#f6fbf8;
+  --r:14px;
+  --r2:22px;
+  --shadow:0 2px 24px rgba(0,80,50,.10);
+  --shadow2:0 8px 48px rgba(0,80,50,.16);
+}
+
+html{scroll-behavior:smooth;font-size:16px}
+
+body{
+  font-family:'Noto Sans Bengali','DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* ─── NAV ─────────────────────────────────── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(0,61,44,.96);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(200,149,10,.25);
+  padding:0 clamp(1rem,4vw,3rem);
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .3s;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.nav-logo-icon{
+  width:36px;height:36px;
+  background:var(--gold);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-weight:700;font-size:1.1rem;
+  color:var(--gd);
+  flex-shrink:0;
+}
+.nav-brand{
+  font-family:'Noto Serif Bengali',serif;
+  font-size:1.3rem;font-weight:700;
+  color:#fff;letter-spacing:.02em;
+}
+.nav-brand em{color:var(--gold);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{
+  font-size:.78rem;font-weight:600;
+  color:rgba(255,255,255,.72);
+  text-decoration:none;letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:color .2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:0;height:1.5px;background:var(--gold);
+  transition:width .25s;
+}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-cta-btn{
+  background:var(--gold);
+  color:var(--gd)!important;
+  padding:8px 18px;border-radius:8px;
+  font-size:.78rem!important;font-weight:700!important;
+  transition:transform .15s,box-shadow .15s!important;
+  box-shadow:0 3px 12px rgba(200,149,10,.35);
+}
+.nav-cta-btn::after{display:none!important}
+.nav-cta-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(200,149,10,.45)!important}
+
+.menu-toggle{
+  display:none;
+  flex-direction:column;gap:5px;
+  cursor:pointer;padding:4px;
+  background:none;border:none;
+}
+.menu-toggle span{
+  display:block;width:22px;height:2px;
+  background:#fff;border-radius:2px;
+  transition:transform .3s,opacity .3s;
+}
+.mobile-nav{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;
+  background:rgba(0,40,28,.97);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding:1.5rem 2rem 2rem;
+  z-index:190;
+  border-bottom:1px solid rgba(200,149,10,.2);
+  transform:translateY(-10px);opacity:0;
+  transition:transform .3s,opacity .3s;
+}
+.mobile-nav.open{display:block;transform:translateY(0);opacity:1}
+.mobile-nav a{
+  display:block;padding:.9rem 0;
+  font-size:1rem;font-weight:600;
+  color:rgba(255,255,255,.82);
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  letter-spacing:.05em;
+}
+.mobile-nav a:last-child{border-bottom:none}
+.mobile-nav a:hover{color:var(--gold)}
+
+/* ─── HERO ────────────────────────────────── */
+.hero{
+  position:relative;
+  background:var(--gd);
+  padding:clamp(4rem,10vw,7rem) clamp(1.2rem,5vw,3rem) clamp(3rem,8vw,6rem);
+  overflow:hidden;
+  min-height:92vh;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 110% 40%, rgba(200,149,10,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at -10% 80%, rgba(0,106,78,.5) 0%, transparent 60%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.hero-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  pointer-events:none;
+  animation:orbFloat 8s ease-in-out infinite;
+}
+.hero-orb1{
+  width:400px;height:400px;
+  background:rgba(200,149,10,.08);
+  top:-10%;right:-5%;
+  animation-delay:0s;
+}
+.hero-orb2{
+  width:300px;height:300px;
+  background:rgba(0,150,100,.08);
+  bottom:5%;left:-5%;
+  animation-delay:3s;
+}
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(20px,-20px) scale(1.05)}
+}
+
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;
+  max-width:820px;
+  width:100%;
+}
+
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,149,10,.15);
+  border:1px solid rgba(200,149,10,.35);
+  padding:6px 18px;border-radius:100px;
+  font-size:.75rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold2);
+  margin-bottom:2rem;
+  animation:fadeSlideUp .8s ease both;
+}
+.hero-pill-dot{
+  width:6px;height:6px;background:var(--gold2);
+  border-radius:50%;animation:pulse 2s ease infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+
+.hero h1{
+  font-family:'Playfair Display','Noto Serif Bengali',serif;
+  font-size:clamp(2.4rem,6vw,4.2rem);
+  font-weight:900;line-height:1.15;
+  color:#fff;
+  margin-bottom:1.5rem;
+  animation:fadeSlideUp .8s .15s ease both;
+}
+.hero h1 em{
+  color:var(--gold);font-style:normal;
+  position:relative;display:inline-block;
+}
+.hero h1 em::after{
+  content:'';
+  position:absolute;bottom:-4px;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  border-radius:2px;
+  animation:lineGrow .8s .8s ease both;
+  transform-origin:left;
+}
+@keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+.hero p{
+  font-size:clamp(.98rem,2vw,1.15rem);
+  color:rgba(255,255,255,.68);
+  max-width:540px;margin:0 auto 2.5rem;
+  line-height:1.8;
+  animation:fadeSlideUp .8s .25s ease both;
+}
+.hero-actions{
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:1rem;
+  animation:fadeSlideUp .8s .35s ease both;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold);
+  color:var(--gd);
+  font-weight:700;font-size:1rem;
+  padding:15px 34px;border-radius:var(--r);
+  text-decoration:none;letter-spacing:.02em;
+  transition:transform .15s,box-shadow .15s;
+  box-shadow:0 5px 24px rgba(200,149,10,.4);
+  position:relative;overflow:hidden;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.15);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.btn-primary:hover::before{transform:scaleX(1)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(200,149,10,.5)}
+.btn-primary .arrow{
+  width:24px;height:24px;
+  background:rgba(0,0,0,.12);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;
+  transition:transform .2s;
+}
+.btn-primary:hover .arrow{transform:translateX(3px)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;
+  border:1.5px solid rgba(255,255,255,.25);
+  color:rgba(255,255,255,.82);
+  font-weight:600;font-size:1rem;
+  padding:15px 28px;border-radius:var(--r);
+  text-decoration:none;
+  transition:border-color .2s,background .2s,color .2s;
+}
+.btn-secondary:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.06);color:#fff}
+
+@keyframes fadeSlideUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ─── SCROLL INDICATOR ───────────────────── */
+.scroll-ind{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:.5;animation:fadeSlideUp .8s .6s ease both;
+}
+.scroll-ind span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.scroll-ind-line{
+  width:1.5px;height:36px;background:rgba(255,255,255,.3);
+  position:relative;overflow:hidden;
+}
+.scroll-ind-line::after{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:40%;background:rgba(255,255,255,.8);
+  animation:scrollDrop 1.5s ease-in-out infinite;
+}
+@keyframes scrollDrop{
+  0%{transform:translateY(-100%)}
+  100%{transform:translateY(300%)}
+}
+
+/* ─── STATS BELT ─────────────────────────── */
+.stats-belt{
+  background:linear-gradient(135deg,var(--gb) 0%,var(--g) 100%);
+  padding:.5rem 0;
+  overflow:hidden;
+}
+.stats-inner{
+  max-width:1000px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stat-box{
+  padding:1.6rem 1.5rem;
+  text-align:center;
+  border-right:1px solid rgba(255,255,255,.12);
+  position:relative;
+  overflow:hidden;
+}
+.stat-box::after{
+  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:0;height:2px;background:var(--gold);
+  transition:width .4s .1s;
+}
+.stat-box:hover::after{width:60%}
+.stat-box:last-child{border-right:none}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.1rem;font-weight:700;
+  color:var(--gold);display:block;
+  line-height:1;margin-bottom:.3rem;
+}
+.stat-label{
+  font-size:.72rem;color:rgba(255,255,255,.65);
+  letter-spacing:.07em;text-transform:uppercase;
+}
+
+/* ─── SECTION COMMON ─────────────────────── */
+.section{
+  padding:clamp(4rem,8vw,7rem) clamp(1.2rem,5vw,3rem);
+  max-width:1100px;margin:0 auto;
+}
+.section-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--g);
+  margin-bottom:.8rem;
+}
+.section-badge-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--g);
+}
+.section-title{
+  font-family:'Playfair Display','Noto Serif Bengali',serif;
+  font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;
+  color:var(--ink);line-height:1.2;margin-bottom:.7rem;
+}
+.section-sub{
+  color:var(--ink3);font-size:1rem;
+  max-width:500px;margin-bottom:3rem;line-height:1.8;
+}
+
+/* ─── WHY CARDS ──────────────────────────── */
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.2rem;
+}
+.why-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--r2);
+  padding:2rem 1.6rem;
+  position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+  cursor:default;
+}
+.why-card:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow2);
+  border-color:rgba(0,106,78,.25);
+}
+.why-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--g),var(--gold));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s;
+}
+.why-card:hover::before{transform:scaleX(1)}
+.why-icon-wrap{
+  width:52px;height:52px;
+  background:var(--gl);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;
+  margin-bottom:1.2rem;
+  transition:background .2s,transform .2s;
+}
+.why-card:hover .why-icon-wrap{background:var(--g);transform:scale(1.05)}
+.why-card:hover .why-icon-wrap .wi{filter:brightness(10)}
+.wi{font-size:1.4rem;display:block;line-height:1}
+.why-card h3{font-size:1.02rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.why-card p{font-size:.9rem;color:var(--ink3);line-height:1.7}
+
+/* ─── PACKAGES ───────────────────────────── */
+.packages-wrap{
+  background:linear-gradient(180deg,var(--bg) 0%,#e8f6f0 100%);
+  padding:clamp(4rem,8vw,7rem) clamp(1.2rem,5vw,3rem);
+}
+.packages-inner{max-width:1100px;margin:0 auto}
+.packages-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.5rem;
+  margin-top:3rem;
+}
+
+.pkg-card{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:var(--r2);
+  overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+  position:relative;
+}
+.pkg-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 48px rgba(0,70,46,.14);
+}
+.pkg-card.featured{
+  border-color:var(--gold);
+  box-shadow:0 0 0 5px rgba(200,149,10,.1);
+}
+.pkg-card.featured:hover{
+  box-shadow:0 16px 48px rgba(200,149,10,.2);
+}
+.pkg-popular{
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  color:var(--gd);
+  font-size:.68rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  text-align:center;padding:6px;
+  animation:shimmer 2.5s linear infinite;
+  background-size:200% 100%;
+}
+@keyframes shimmer{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.pkg-head{
+  padding:2rem 1.8rem 1.6rem;
+  position:relative;overflow:hidden;
+}
+.pkg-head.gold-head{background:linear-gradient(135deg,#003d2c,#006A4E)}
+.pkg-head.silver-head{background:linear-gradient(135deg,#004d38,#0a7a5a)}
+.pkg-head.bronze-head{background:linear-gradient(135deg,#2a4030,#3e6450)}
+.pkg-head::after{
+  content:'';
+  position:absolute;top:-30px;right:-30px;
+  width:140px;height:140px;
+  border-radius:50%;
+  background:rgba(255,255,255,.04);
+  pointer-events:none;
+}
+.pkg-medal{
+  font-size:2.4rem;display:block;
+  margin-bottom:.6rem;line-height:1;
+  animation:medalBounce .6s ease;
+}
+@keyframes medalBounce{
+  0%{transform:translateY(-8px);opacity:0}
+  100%{transform:translateY(0);opacity:1}
+}
+.pkg-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;font-weight:700;color:#fff;
+}
+.pkg-desc{font-size:.83rem;color:rgba(255,255,255,.6);margin-top:4px}
+.pkg-body{padding:1.8rem}
+.price-rows{}
+.price-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 0;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.price-row:last-child{border-bottom:none}
+.price-label{
+  font-size:.9rem;color:var(--ink3);
+  display:flex;align-items:center;gap:8px;
+}
+.price-tag{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--g);
+}
+.price-badge{
+  font-size:.65rem;font-weight:700;
+  background:var(--gl);color:var(--g);
+  padding:2px 8px;border-radius:100px;letter-spacing:.05em;
+}
+.btn-pkg{
+  display:block;width:100%;
+  margin-top:1.5rem;
+  padding:13px;
+  background:var(--g);
+  color:#fff;
+  font-weight:700;font-size:.92rem;
+  text-align:center;text-decoration:none;
+  border-radius:var(--r);border:none;cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .15s;
+  letter-spacing:.02em;
+  position:relative;overflow:hidden;
+}
+.btn-pkg::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.12);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.btn-pkg:hover::after{transform:scaleX(1)}
+.btn-pkg:hover{background:var(--gd);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,70,46,.25)}
+.btn-pkg.gold-cta{
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  color:var(--gd);
+}
+.btn-pkg.gold-cta:hover{background:linear-gradient(90deg,#b0820a,var(--gold))}
+
+/* ─── COMPARISON TABLE ───────────────────── */
+.compare-wrap{
+  padding:clamp(3rem,6vw,5rem) clamp(1.2rem,5vw,3rem);
+  max-width:900px;margin:0 auto;
+}
+.compare-table{
+  width:100%;border-collapse:separate;border-spacing:0;
+  border:1px solid var(--border);border-radius:var(--r2);
+  overflow:hidden;background:var(--white);
+  box-shadow:var(--shadow);
+}
+.compare-table thead tr{background:var(--gd)}
+.compare-table th{
+  padding:1rem 1.4rem;
+  font-size:.8rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:#fff;
+  text-align:center;
+}
+.compare-table th:first-child{text-align:left;color:rgba(255,255,255,.65)}
+.compare-table tbody tr{
+  border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.compare-table tbody tr:hover{background:var(--gl)}
+.compare-table tbody tr:last-child{border-bottom:none}
+.compare-table td{
+  padding:.95rem 1.4rem;
+  font-size:.9rem;color:var(--ink2);
+  text-align:center;
+}
+.compare-table td:first-child{text-align:left;color:var(--ink3);font-weight:500}
+.chk{color:var(--g);font-size:1.1rem;font-weight:700}
+.dash{color:var(--ink4)}
+
+/* ─── FAQ ────────────────────────────────── */
+.faq-section{
+  padding:clamp(3rem,6vw,5rem) clamp(1.2rem,5vw,3rem);
+  background:var(--bg);
+}
+.faq-inner{max-width:760px;margin:0 auto}
+.faq-list{margin-top:2.5rem}
+.faq-item{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  margin-bottom:.75rem;
+  overflow:hidden;
+  transition:box-shadow .2s;
+}
+.faq-item:hover{box-shadow:var(--shadow)}
+.faq-item.open{box-shadow:var(--shadow)}
+.faq-q{
+  padding:1.2rem 1.5rem;
+  font-weight:600;font-size:.97rem;color:var(--ink);
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;user-select:none;gap:1rem;
+  transition:background .15s;
+}
+.faq-q:hover{background:var(--bg)}
+.faq-item.open .faq-q{background:var(--gl)}
+.faq-chevron{
+  width:28px;height:28px;flex-shrink:0;
+  background:var(--gl);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--g);font-weight:400;
+  transition:transform .3s,background .2s;
+  line-height:1;
+}
+.faq-item.open .faq-chevron{transform:rotate(45deg);background:var(--g);color:#fff}
+.faq-a{
+  padding:0 1.5rem;
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease,padding .25s ease;
+  font-size:.9rem;color:var(--ink3);line-height:1.8;
+}
+.faq-item.open .faq-a{
+  padding:0 1.5rem 1.3rem;
+  max-height:300px;
+}
+
+/* ─── TERMS ──────────────────────────────── */
+.terms-wrap{
+  background:linear-gradient(135deg,var(--gd) 0%,#002a1e 100%);
+  padding:clamp(3rem,6vw,5rem) clamp(1.2rem,5vw,3rem);
+}
+.terms-inner{max-width:840px;margin:0 auto}
+.terms-wrap .section-badge{color:var(--gold)}
+.terms-wrap .section-badge-dot{background:var(--gold)}
+.terms-wrap .section-title{color:#fff}
+.terms-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1rem;margin-top:2rem;
+}
+.terms-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r);
+  padding:1.3rem 1.5rem 1.3rem 1.2rem;
+  display:flex;align-items:flex-start;gap:1rem;
+  transition:background .2s;
+}
+.terms-card:hover{background:rgba(255,255,255,.1)}
+.terms-num{
+  width:32px;height:32px;flex-shrink:0;
+  background:rgba(200,149,10,.2);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-weight:700;font-size:.95rem;color:var(--gold);
+  margin-top:2px;
+}
+.terms-card p{font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.7}
+
+/* ─── CONTACT ────────────────────────────── */
+.contact-section{
+  padding:clamp(4rem,8vw,7rem) clamp(1.2rem,5vw,3rem);
+  text-align:center;
+  background:var(--bg);
+}
+.contact-section .section-title{margin:0 auto .7rem;max-width:600px}
+.contact-section .section-sub{margin:0 auto 3rem}
+.contact-cards{
+  display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;
+}
+.contact-card{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:var(--r2);
+  padding:2rem 2.5rem;
+  min-width:240px;
+  text-align:center;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  position:relative;overflow:hidden;
+}
+.contact-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:4px;
+  background:linear-gradient(90deg,var(--g),var(--gold));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s;
+}
+.contact-card:hover::before{transform:scaleX(1)}
+.contact-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow2);
+  border-color:rgba(0,106,78,.3);
+}
+.contact-icon-box{
+  width:60px;height:60px;
+  background:var(--gl);border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;margin:0 auto 1rem;
+  transition:background .2s,transform .2s;
+}
+.contact-card:hover .contact-icon-box{background:var(--g);transform:scale(1.05)}
+.contact-card:hover .contact-icon-box .ci{filter:brightness(10)}
+.ci{font-size:1.5rem}
+.contact-lbl{
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink4);margin-bottom:.4rem;
+}
+.contact-val{
+  display:block;font-size:1.05rem;font-weight:700;
+  color:var(--g);text-decoration:none;
+  transition:color .2s;
+}
+.contact-val:hover{color:var(--gold)}
+
+/* ─── CTA BAND ───────────────────────────── */
+.cta-band{
+  background:linear-gradient(135deg,var(--gd),#00533e);
+  padding:clamp(3rem,6vw,4.5rem) clamp(1.2rem,5vw,3rem);
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    -45deg,
+    transparent,transparent 30px,
+    rgba(255,255,255,.015) 30px,rgba(255,255,255,.015) 31px
+  );
+}
+.cta-band h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:700;color:#fff;margin-bottom:1rem;
+  position:relative;
+}
+.cta-band h2 span{color:var(--gold)}
+.cta-band p{color:rgba(255,255,255,.65);font-size:1rem;margin-bottom:2rem;position:relative}
+
+/* ─── FOOTER ─────────────────────────────── */
+footer{
+  background:#001a10;
+  padding:1.6rem 2rem;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+footer p{font-size:.8rem;color:rgba(255,255,255,.3)}
+footer span{color:var(--gold)}
+
+/* ─── SCROLL REVEAL ──────────────────────── */
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .65s ease,transform .65s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media(max-width:900px){
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-box:nth-child(2){border-right:none}
+  .stat-box:nth-child(3){border-bottom:none}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .menu-toggle{display:flex}
+  .hero{min-height:80vh}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .compare-wrap{overflow-x:auto;padding-left:1rem;padding-right:1rem}
+  .compare-table{min-width:560px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">N</div>
+    <div class="nav-brand">News<em>Bangla</em></div>
+  </a>
+  <div class="nav-links">
+    <a href="#packages">প্যাকেজ</a>
+    <a href="#compare">তুলনা</a>
+    <a href="#faq">FAQ</a>
+    <a href="#terms">শর্তাবলি</a>
+    <a href="#contact" class="nav-cta-btn">যোগাযোগ করুন →</a>
+  </div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#packages" onclick="closeMobile()">প্যাকেজ দেখুন</a>
+  <a href="#compare" onclick="closeMobile()">তুলনা করুন</a>
+  <a href="#faq" onclick="closeMobile()">প্রায়ই জিজ্ঞাসিত প্রশ্ন</a>
+  <a href="#terms" onclick="closeMobile()">শর্তাবলি</a>
+  <a href="#contact" onclick="closeMobile()" style="color:var(--gold);font-weight:700">যোগাযোগ করুন →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb1"></div>
+  <div class="hero-orb hero-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      App Advertising
+    </div>
+    <h1>আপনার ব্র্যান্ড <em>হাজারো</em><br>পাঠকের সামনে</h1>
+    <p>NewsBangla অ্যাপের হোমপেজে আপনার ব্যানার বিজ্ঞাপন প্রদর্শন করুন — প্রতিদিন হাজার হাজার সক্রিয় পাঠকের কাছে পৌঁছান।</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        এখনই শুরু করুন
+        <span class="arrow">→</span>
+      </a>
+      <a href="#packages" class="btn-secondary">প্যাকেজ দেখুন</a>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>স্ক্রোল করুন</span>
+    <div class="scroll-ind-line"></div>
+  </div>
+</section>
+
+<!-- STATS BELT -->
+<div class="stats-belt">
+  <div class="stats-inner">
+    <div class="stat-box">
+      <span class="stat-num" data-count="100000">০</span>
+      <span class="stat-label">অ্যাপ ইনস্টল</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num" data-count="10000">০</span>
+      <span class="stat-label">দৈনিক সক্রিয় ইউজার</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num" data-raw="৩টি">৩টি</span>
+      <span class="stat-label">প্রিমিয়াম ব্যানার পজিশন</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num" data-raw="২৪/৭">২৪/৭</span>
+      <span class="stat-label">ব্র্যান্ড ভিজিবিলিটি</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY -->
+<div class="section">
+  <div class="section-badge reveal"><span class="section-badge-dot"></span> কেন NewsBangla-তে?</div>
+  <h2 class="section-title reveal reveal-delay-1">কার্যকর ও বাজেট-ফ্রেন্ডলি<br>ব্র্যান্ড প্রমোশন</h2>
+  <p class="section-sub reveal reveal-delay-2">ছোট বড় সব ব্যবসার জন্য উপযুক্ত প্যাকেজ — সহজে শুরু করুন, দ্রুত ফলাফল পান।</p>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon-wrap"><span class="wi">👁</span></div>
+      <h3>হোমপেজ প্রাইম লোকেশন</h3>
+      <p>সব ব্যবহারকারী প্রতিটি ভিজিটে আপনার ব্যানার দেখবেন — সর্বোচ্চ এক্সপোজার নিশ্চিত।</p>
+    </div>
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-icon-wrap"><span class="wi">🎯</span></div>
+      <h3>উচ্চ ইউজার রিচ</h3>
+      <p>১ লক্ষেরও বেশি ইনস্টল এবং প্রতিদিন ১০,০০০+ সক্রিয় ব্যবহারকারী আপনার বিজ্ঞাপন দেখবেন।</p>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-icon-wrap"><span class="wi">⚡</span></div>
+      <h3>সহজ সেটআপ</h3>
+      <p>শুধু ছবি পাঠান — আমরা বাকি সব করে দেবো। কোনো টেকনিক্যাল ঝামেলা নেই।</p>
+    </div>
+    <div class="why-card reveal reveal-delay-3">
+      <div class="why-icon-wrap"><span class="wi">🔗</span></div>
+      <h3>ক্লিকযোগ্য ব্যানার</h3>
+      <p>ব্যানারে ক্লিক করলে সরাসরি আপনার ওয়েবসাইট বা নির্বাচিত লিংকে চলে যাবে।</p>
+    </div>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<section class="packages-wrap" id="packages">
+  <div class="packages-inner">
+    <div class="section-badge reveal"><span class="section-badge-dot"></span> আমাদের প্যাকেজ</div>
+    <h2 class="section-title reveal reveal-delay-1">সঠিক প্যাকেজ বেছে নিন</h2>
+    <p class="section-sub reveal reveal-delay-2">আপনার বাজেট ও লক্ষ্য অনুযায়ী তিনটি ব্যানার পজিশন থেকে বেছে নিন।</p>
+    <div class="packages-grid">
+
+      <!-- GOLD -->
+      <div class="pkg-card featured reveal">
+        <div class="pkg-popular">⭐ সবচেয়ে জনপ্রিয় পজিশন</div>
+        <div class="pkg-head gold-head">
+          <span class="pkg-medal">🥇</span>
+          <div class="pkg-name">১ম ব্যানার</div>
+          <div class="pkg-desc">সর্বোচ্চ ভিজিবিলিটি – প্রথমেই চোখে পড়ে</div>
+        </div>
+        <div class="pkg-body">
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-label">📅 ১ সপ্তাহ</span>
+              <span class="price-tag">৳ ৪,৯৯৯</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">📅 ১৫ দিন <span class="price-badge">বাড়তি সঞ্চয়</span></span>
+              <span class="price-tag">৳ ৭,৯৯৯</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">📅 ১ মাস <span class="price-badge">সেরা মূল্য</span></span>
+              <span class="price-tag">৳ ১৪,৯৯৯</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn-pkg gold-cta">এই প্যাকেজ নিন →</a>
+        </div>
+      </div>
+
+      <!-- SILVER -->
+      <div class="pkg-card reveal reveal-delay-1">
+        <div class="pkg-head silver-head">
+          <span class="pkg-medal">🥈</span>
+          <div class="pkg-name">২য় ব্যানার</div>
+          <div class="pkg-desc">মধ্যম স্তরের ভিজিবিলিটি, কার্যকর মূল্যে</div>
+        </div>
+        <div class="pkg-body">
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-label">📅 ১ সপ্তাহ</span>
+              <span class="price-tag">৳ ৩,৯৯৯</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">📅 ১৫ দিন</span>
+              <span class="price-tag">৳ ৬,৯৯৯</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">📅 ১ মাস <span class="price-badge">সেরা মূল্য</span></span>
+              <span class="price-tag">৳ ১২,৯৯৯</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn-pkg">এই প্যাকেজ নিন →</a>
+        </div>
+      </div>
+
+      <!-- BRONZE -->
+      <div class="pkg-card reveal reveal-delay-2">
+        <div class="pkg-head bronze-head">
+          <span class="pkg-medal">🥉</span>
+          <div class="pkg-name">৩য় ব্যানার</div>
+          <div class="pkg-desc">ছোট ব্যবসার জন্য সাশ্রয়ী সেরা অপশন</div>
+        </div>
+        <div class="pkg-body">
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-label">📅 ১ সপ্তাহ</span>
+              <span class="price-tag">৳ ২,৫৯৯</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">📅 ১৫ দিন</span>
+              <span class="price-tag">৳ ৪,৯৯৯</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">📅 ১ মাস <span class="price-badge">সেরা মূল্য</span></span>
+              <span class="price-tag">৳ ১০,৯৯৯</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn-pkg">এই প্যাকেজ নিন →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<div class="compare-wrap" id="compare">
+  <div class="section-badge reveal" style="margin-bottom:.8rem"><span class="section-badge-dot"></span> প্যাকেজ তুলনা</div>
+  <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:2rem">পাশাপাশি তুলনা</h2>
+  <div class="reveal">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>বৈশিষ্ট্য</th>
+        <th>🥇 ১ম ব্যানার</th>
+        <th>🥈 ২য় ব্যানার</th>
+        <th>🥉 ৩য় ব্যানার</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>হোমপেজ পজিশন</td>
+        <td><span class="chk">✓ সর্বোচ্চ</span></td>
+        <td><span class="chk">✓ মধ্যম</span></td>
+        <td><span class="chk">✓ তৃতীয়</span></td>
+      </tr>
+      <tr>
+        <td>ক্লিকযোগ্য লিংক</td>
+        <td><span class="chk">✓</span></td>
+        <td><span class="chk">✓</span></td>
+        <td><span class="chk">✓</span></td>
+      </tr>
+      <tr>
+        <td>২৪/৭ ভিজিবিলিটি</td>
+        <td><span class="chk">✓</span></td>
+        <td><span class="chk">✓</span></td>
+        <td><span class="chk">✓</span></td>
+      </tr>
+      <tr>
+        <td>১ সপ্তাহ দাম</td>
+        <td>৳ ৪,৯৯৯</td>
+        <td>৳ ৩,৯৯৯</td>
+        <td>৳ ২,৫৯৯</td>
+      </tr>
+      <tr>
+        <td>১ মাস দাম</td>
+        <td>৳ ১৪,৯৯৯</td>
+        <td>৳ ১২,৯৯৯</td>
+        <td>৳ ১০,৯৯৯</td>
+      </tr>
+      <tr>
+        <td>আনুমানিক দৈনিক দর্শক</td>
+        <td>১০,০০০+</td>
+        <td>৮,০০০+</td>
+        <td>৬,০০০+</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="section-badge reveal"><span class="section-badge-dot"></span> সাধারণ প্রশ্ন</div>
+    <h2 class="section-title reveal reveal-delay-1">প্রায়ই জিজ্ঞাসিত প্রশ্ন</h2>
+    <div class="faq-list reveal reveal-delay-2">
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ব্যানারে লিংক যোগ করা যাবে?
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a">হ্যাঁ, অবশ্যই। ব্যানার ইমেজে ক্লিক করলে আপনার দেওয়া লিংক (ওয়েবসাইট বা যেকোনো URL) সরাসরি ওপেন হবে।</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ছবি পরে বদলাতে পারি?
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a">হ্যাঁ, নতুন ছবি পাঠালে আমরা আপডেট করে দেব। তবে ক্ষেত্রবিশেষে অতিরিক্ত চার্জ প্রযোজ্য হতে পারে।</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Impression বা Click রিপোর্ট পাওয়া যাবে?
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a">বর্তমান প্যাকেজে Impression বা Click রিপোর্ট প্রদান করা হয় না। তবে ভবিষ্যতে এই সুবিধা আসতে পারে।</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ব্যানার কোন ফরম্যাটে পাঠাতে হবে?
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a">সাধারণত JPG, PNG বা WebP ফরম্যাটের ছবি গ্রহণযোগ্য। সঠিক সাইজ ও স্পেসিফিকেশনের জন্য আমাদের সাথে যোগাযোগ করুন।</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          পেমেন্ট করার পর কতদিনে বিজ্ঞাপন চালু হবে?
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a">পেমেন্ট নিশ্চিত হওয়া ও ছবি অনুমোদনের পর দ্রুত সময়ের মধ্যে বিজ্ঞাপন সক্রিয় করা হবে।</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="terms-wrap" id="terms">
+  <div class="terms-inner">
+    <div class="section-badge reveal"><span class="section-badge-dot"></span> শর্তাবলি</div>
+    <h2 class="section-title reveal reveal-delay-1">Terms & Conditions</h2>
+    <div class="terms-grid">
+      <div class="terms-card reveal">
+        <div class="terms-num">১</div>
+        <p>পেমেন্ট সম্পন্ন হলেই বিজ্ঞাপন সক্রিয় করা হবে।</p>
+      </div>
+      <div class="terms-card reveal reveal-delay-1">
+        <div class="terms-num">২</div>
+        <p>বিজ্ঞাপন সক্রিয় হওয়ার পর কোনো ক্যানসেল বা রিফান্ড করা যাবে না।</p>
+      </div>
+      <div class="terms-card reveal reveal-delay-2">
+        <div class="terms-num">৩</div>
+        <p>অশ্লীল, বেআইনি বা আপত্তিকর কন্টেন্ট গ্রহণযোগ্য নয় — আপলোডের আগে যাচাই করা হবে।</p>
+      </div>
+      <div class="terms-card reveal reveal-delay-3">
+        <div class="terms-num">৪</div>
+        <p>নির্ধারিত সময় শেষে ব্যানার স্বয়ংক্রিয়ভাবে সরিয়ে ফেলা হবে — নতুন চুক্তি না থাকলে।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-badge reveal" style="justify-content:center"><span class="section-badge-dot"></span> যোগাযোগ করুন</div>
+  <h2 class="section-title reveal reveal-delay-1">আজই আপনার বিজ্ঞাপন শুরু করুন</h2>
+  <p class="section-sub reveal reveal-delay-2">আপনার ব্র্যান্ড বা প্রতিষ্ঠানের বিজ্ঞাপন দিতে চান? এখনই আমাদের সাথে যোগাযোগ করুন।</p>
+  <div class="contact-cards">
+    <div class="contact-card reveal">
+      <div class="contact-icon-box"><span class="ci">💬</span></div>
+      <div class="contact-lbl">WhatsApp</div>
+      <a href="https://wa.me/8801627600054" class="contact-val" target="_blank">01627 600054</a>
+    </div>
+    <div class="contact-card reveal reveal-delay-1">
+      <div class="contact-icon-box"><span class="ci">✉️</span></div>
+      <div class="contact-lbl">ইমেইল</div>
+      <a href="mailto:newsbangla300@gmail.com" class="contact-val">newsbangla300@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>আজই <span>শুরু করুন</span> এবং পৌঁছান<br>লক্ষাধিক পাঠকের কাছে</h2>
+  <p>সীমিত স্লট বাকি আছে — দেরি না করে এখনই বুক করুন।</p>
+  <a href="#contact" class="btn-primary" style="margin:0 auto;display:inline-flex">
+    এখনই যোগাযোগ করুন
+    <span class="arrow">→</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© ২০২৫ <span>NewsBangla</span> — সকল স্বত্ব সংরক্ষিত</p>
+</footer>
+
+<script>
+// Mobile nav
+const menuToggle=document.getElementById('menuToggle');
+const mobileNav=document.getElementById('mobileNav');
+menuToggle.addEventListener('click',()=>{
+  mobileNav.classList.toggle('open');
+});
+function closeMobile(){
+  mobileNav.classList.remove('open');
+}
+
+// FAQ toggle
+function toggleFaq(el){
+  const item=el.parentElement;
+  item.classList.toggle('open');
+}
+
+// Scroll reveal
+const revealEls=document.querySelectorAll('.reveal');
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}
+  });
+},{threshold:.12});
+revealEls.forEach(el=>revealObs.observe(el));
+
+// Counter animation
+function animateCounter(el,target){
+  let start=0;
+  const duration=1800;
+  const step=16;
+  const increment=target/(duration/step);
+  const timer=setInterval(()=>{
+    start+=increment;
+    if(start>=target){
+      start=target;
+      clearInterval(timer);
+    }
+    // Format with Bangla numerals
+    const bn=['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    const num=Math.round(start).toLocaleString('en-IN');
+    let result='';
+    for(const c of num){
+      result+=(/\d/.test(c))?bn[parseInt(c)]:c;
+    }
+    el.textContent=result+(target>=100000?'+':'');
+  },step);
+}
+
+const counterObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const target=parseInt(el.dataset.count);
+      if(target) animateCounter(el,target);
+      counterObs.unobserve(el);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>counterObs.observe(el));
+
+// Sticky nav scroll effect
+const navEl=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>60){
+    navEl.style.background='rgba(0,30,20,.98)';
+  } else {
+    navEl.style.background='rgba(0,61,44,.96)';
+  }
+},{passive:true});
+</script>
+</body>
+</html>

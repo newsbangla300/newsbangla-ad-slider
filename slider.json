@@ -4,17 +4,19 @@
     "title": "Enjoy your time, play this game",
     "link": "https://play.google.com/store/apps/details?id=com.artechandsoft.cargame"
   },
-  
-  {
-    "image": "https://raw.githubusercontent.com/newsbangla300/newsbangla-ad-slider/refs/heads/main/narikuthir.jpeg",
-    "title": "Naarikutir - নারীকুটির -Where Every Woman Belongs",
-    "link": "https://www.facebook.com/profile.php?id=61585831001929"
-  },
 
   {
     "image": "https://raw.githubusercontent.com/newsbangla300/newsbangla-ad-slider/refs/heads/main/adbanner.jpeg",
     "title": "বিজ্ঞাপনের জন্য যোগাযোগ করুন। বিস্তারিত জানতে ক্লিক করুন",
     "link": "https://newsbangla300.github.io/newsbangla-ad-slider/"
+  },
+
+  
+  {
+    "image": "https://raw.githubusercontent.com/newsbangla300/newsbangla-ad-slider/refs/heads/main/narikuthir.jpeg",
+    "title": "Naarikutir - নারীকুটির -Where Every Woman Belongs",
+    "link": "https://www.facebook.com/profile.php?id=61585831001929"
   }
 
+  
 ]
